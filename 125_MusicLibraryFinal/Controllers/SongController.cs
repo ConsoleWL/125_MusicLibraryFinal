@@ -20,10 +20,22 @@ namespace _125_MusicLibraryFinal.Controllers
         public IActionResult Get()
         {
             List<Song> songs = _context.Songs
-               // .Include(f => f.PlaylistId)
                 .Include(f=>f.Playlist)
                 .ToList();
             return Ok(songs);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            Song? song = _context.Songs
+                .Include(f=>f.Playlist)
+                .FirstOrDefault();
+
+            if (song is null)
+                return NotFound();
+
+            return Ok(song);
         }
 
     }
