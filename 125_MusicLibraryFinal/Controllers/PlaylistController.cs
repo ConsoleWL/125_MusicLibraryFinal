@@ -1,5 +1,6 @@
 ﻿using _125_MusicLibraryFinal.Data;
 using _125_MusicLibraryFinal.Models;
+using _125_MusicLibraryFinal.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -39,7 +40,41 @@ namespace _125_MusicLibraryFinal.Controllers
             return Ok(playlist);
         }
 
-        
+        [HttpPost]
+        public IActionResult Post([FromBody] PlaylistDto playlist)
+        {
+            if (playlist is null)
+                return BadRequest();
 
+            Playlist? newPlaylist = PostPlaylistObject(playlist);
+
+            _context.Playlists.Add(newPlaylist);
+            _context.SaveChanges();
+            return Ok(newPlaylist);
+        }
+
+        private Playlist PostPlaylistObject(PlaylistDto playlistDto)
+        {
+            Playlist result = new Playlist();
+            result.Name = playlistDto.Name;
+
+            result.Songs = new List<Song>();
+
+            // how to get read of that "possible null"
+            playlistDto.Songs.ForEach(f =>
+            {
+                Song temp = new Song();
+                temp.Title = f.Title;
+                temp.Artist = f.Artist;
+                temp.Album = f.Album;
+                temp.DateTime = f.DateTime;
+                temp.Genre = f.Genre;
+                temp.Likes = f.Likes;
+
+                result.Songs.Add(temp);
+            });
+
+            return result;
+        }
     }
 }
