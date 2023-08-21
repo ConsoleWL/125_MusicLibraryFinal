@@ -38,6 +38,18 @@ namespace _125_MusicLibraryFinal.Controllers
             return Ok(song);
         }
 
+        // Adding a song wihtout adding it to the Playlist
+        [HttpPost]
+        public IActionResult Post([FromBody] Song song)
+        {
+            if (song is null)
+                return NotFound();
+
+            _context.Songs.Add(song);
+            _context.SaveChanges();
+            return Ok(song);
+        }
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
