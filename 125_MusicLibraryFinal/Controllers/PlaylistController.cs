@@ -25,5 +25,21 @@ namespace _125_MusicLibraryFinal.Controllers
 
             return Ok(playlists);
         }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            Playlist? playlist = _context.Playlists
+                .Include(f => f.Songs)
+                .FirstOrDefault(f => f.PlaylistId == id);
+
+            if (playlist is null)
+                return NotFound();
+
+            return Ok(playlist);
+        }
+
+        
+
     }
 }
