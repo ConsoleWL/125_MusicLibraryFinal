@@ -38,5 +38,18 @@ namespace _125_MusicLibraryFinal.Controllers
             return Ok(song);
         }
 
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Song? song = _context.Songs.FirstOrDefault(f => f.Id == id);
+
+            if (song is null)
+                return NotFound();
+
+            _context.Songs.Remove(song);
+            _context.SaveChanges();
+            return Ok(song);
+        }
+
     }
 }
