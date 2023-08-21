@@ -76,5 +76,20 @@ namespace _125_MusicLibraryFinal.Controllers
 
             return result;
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            Playlist? playlist = _context.Playlists
+                .Include(f => f.Songs)
+                .FirstOrDefault(f => f.PlaylistId == id);
+
+            if (playlist is null)
+                return NotFound();
+
+            _context.Playlists.Remove(playlist);
+            _context.SaveChanges();
+            return Ok(playlist);
+        }
     }
 }
