@@ -1,5 +1,6 @@
 ﻿using _125_MusicLibraryFinal.Data;
 using _125_MusicLibraryFinal.Models;
+using _125_MusicLibraryFinal.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
@@ -96,6 +97,42 @@ namespace _125_MusicLibraryFinal.Controllers
             _context.SaveChanges();
             return Ok(song);
         }
+
+        //[HttpPatch("{id}")]
+        //public IActionResult UpdatePartial(int id, [FromBody] SongDto songDto)
+        //{
+        //    if (songDto is null)
+        //        return BadRequest();
+
+        //    Song? existingSong = _context.Songs.SingleOrDefault(f => f.Id == id);
+
+        //    if (existingSong is null)
+        //        return NotFound($"No song with id {id}");
+
+        //    existingSong = PatchSongObject(songDto);
+
+        //    _context.SaveChanges();
+
+        //    return Ok(existingSong);
+        //}
+        //private Song PatchSongObject(SongDto songDto)
+        //{
+        //    Song result = new Song();
+        //    result.Title = songDto.Title;
+        //    result.Artist = songDto.Artist;
+        //    result.Album = songDto.Album;
+        //    result.ReleaseDate = songDto.ReleaseDate;
+        //    result.Genre = songDto.Genre;
+        //    result.Likes = songDto.Likes;
+        //    result.PlaylistId = songDto.PlaylistId;
+
+        //    // here I stuck, I have no clue... because songDto Doesn't have Playlist because it was somekind of problem with constant looping
+        //    // I leave it for now maybe I'll come back;
+            
+        //    //result.Playlist = new Playlist();
+
+        //    return result; 
+        //}
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

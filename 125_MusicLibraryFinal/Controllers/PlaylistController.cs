@@ -61,7 +61,7 @@ namespace _125_MusicLibraryFinal.Controllers
 
             result.Songs = new List<Song>();
 
-            // how to get read of that "possible null"
+            // how to get rid of that "possible null"?
             playlistDto.Songs.ForEach(f =>
             {
                 Song temp = new Song();
