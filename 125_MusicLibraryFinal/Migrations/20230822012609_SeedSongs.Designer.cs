@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using _125_MusicLibraryFinal.Data;
 
@@ -10,9 +11,11 @@ using _125_MusicLibraryFinal.Data;
 namespace _125_MusicLibraryFinal.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230822012609_SeedSongs")]
+    partial class SeedSongs
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,23 +35,6 @@ namespace _125_MusicLibraryFinal.Migrations
                     b.HasKey("PlaylistId");
 
                     b.ToTable("Playlists");
-
-                    b.HasData(
-                        new
-                        {
-                            PlaylistId = 1,
-                            Name = "Rok"
-                        },
-                        new
-                        {
-                            PlaylistId = 2,
-                            Name = "Pop"
-                        },
-                        new
-                        {
-                            PlaylistId = 3,
-                            Name = "Rap"
-                        });
                 });
 
             modelBuilder.Entity("_125_MusicLibraryFinal.Models.Song", b =>
@@ -95,7 +81,7 @@ namespace _125_MusicLibraryFinal.Migrations
                             Artist = "Arsm",
                             Genre = "Pop",
                             Likes = 0,
-                            ReleaseDate = new DateTime(2023, 8, 21, 21, 29, 35, 693, DateTimeKind.Local).AddTicks(5939),
+                            ReleaseDate = new DateTime(2023, 8, 21, 21, 26, 9, 901, DateTimeKind.Local).AddTicks(2946),
                             Title = "Txt"
                         },
                         new
@@ -105,7 +91,7 @@ namespace _125_MusicLibraryFinal.Migrations
                             Artist = "HasData",
                             Genre = "Pop",
                             Likes = 0,
-                            ReleaseDate = new DateTime(2023, 8, 21, 21, 29, 35, 693, DateTimeKind.Local).AddTicks(5988),
+                            ReleaseDate = new DateTime(2023, 8, 21, 21, 26, 9, 901, DateTimeKind.Local).AddTicks(2999),
                             Title = "Migrations  "
                         },
                         new
@@ -115,7 +101,7 @@ namespace _125_MusicLibraryFinal.Migrations
                             Artist = "HasData",
                             Genre = "Rock",
                             Likes = 0,
-                            ReleaseDate = new DateTime(2023, 8, 21, 21, 29, 35, 693, DateTimeKind.Local).AddTicks(5991),
+                            ReleaseDate = new DateTime(2023, 8, 21, 21, 26, 9, 901, DateTimeKind.Local).AddTicks(3001),
                             Title = "Blog"
                         },
                         new
@@ -125,7 +111,7 @@ namespace _125_MusicLibraryFinal.Migrations
                             Artist = "See ",
                             Genre = "Rock",
                             Likes = 0,
-                            ReleaseDate = new DateTime(2023, 8, 21, 21, 29, 35, 693, DateTimeKind.Local).AddTicks(5993),
+                            ReleaseDate = new DateTime(2023, 8, 21, 21, 26, 9, 901, DateTimeKind.Local).AddTicks(3003),
                             Title = "Thus  "
                         },
                         new
@@ -135,7 +121,7 @@ namespace _125_MusicLibraryFinal.Migrations
                             Artist = "See ",
                             Genre = "Rap",
                             Likes = 0,
-                            ReleaseDate = new DateTime(2023, 8, 21, 21, 29, 35, 693, DateTimeKind.Local).AddTicks(5995),
+                            ReleaseDate = new DateTime(2023, 8, 21, 21, 26, 9, 901, DateTimeKind.Local).AddTicks(3005),
                             Title = "Note"
                         },
                         new
@@ -145,7 +131,7 @@ namespace _125_MusicLibraryFinal.Migrations
                             Artist = "Limitations ",
                             Genre = "Rap",
                             Likes = 0,
-                            ReleaseDate = new DateTime(2023, 8, 21, 21, 29, 35, 693, DateTimeKind.Local).AddTicks(5997),
+                            ReleaseDate = new DateTime(2023, 8, 21, 21, 26, 9, 901, DateTimeKind.Local).AddTicks(3007),
                             Title = "Additional "
                         });
                 });
