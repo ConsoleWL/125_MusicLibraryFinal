@@ -1,6 +1,7 @@
 ﻿using _125_MusicLibraryFinal.Data;
 using _125_MusicLibraryFinal.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace _125_MusicLibraryFinal.Controllers
@@ -30,7 +31,7 @@ namespace _125_MusicLibraryFinal.Controllers
         {
             Song? song = _context.Songs
                 .Include(f=>f.Playlist)
-                .FirstOrDefault();
+                .FirstOrDefault(f=>f.Id == id);
 
             if (song is null)
                 return NotFound();
@@ -45,7 +46,53 @@ namespace _125_MusicLibraryFinal.Controllers
             if (song is null)
                 return NotFound();
 
+            _context.Songs.Add(song);   
+            _context.SaveChanges();
+            return Ok(song);
+        }
+
+        // Adding not existing song[From Body] to and Existing Playlist
+        [HttpPost("{playlistId}")]
+        public IActionResult Post(int playlistId, [FromBody] Song song)
+        {
+            if (song is null)
+                return NotFound();
+
+            Playlist? playlist = _context.Playlists.FirstOrDefault(f => f.PlaylistId == playlistId);
+
+            if (playlist is null)
+                return NotFound($"Not found playlist id {playlistId}");
+
+            song.PlaylistId = playlistId;
+            song.Playlist = playlist;
+
+            //playlist.Songs.Add(song);
+
             _context.Songs.Add(song);
+            _context.SaveChanges();
+            return Ok(song);
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Song songUpdate)
+        {
+            if (songUpdate is null)
+                return BadRequest();
+
+            Song? song = _context.Songs.FirstOrDefault(f => f.Id == id);
+
+            if (song is null)
+                return NotFound();
+
+            song.Title = songUpdate.Title;
+            song.Artist = songUpdate.Artist;
+            song.Album = songUpdate.Album;
+            song.ReleaseDate = songUpdate.ReleaseDate;
+            song.Genre = songUpdate.Genre;
+            song.Likes = songUpdate.Likes;
+            song.PlaylistId = songUpdate.PlaylistId;
+            song.Playlist = song.Playlist; // is that right? looks fishy to me...
+
             _context.SaveChanges();
             return Ok(song);
         }

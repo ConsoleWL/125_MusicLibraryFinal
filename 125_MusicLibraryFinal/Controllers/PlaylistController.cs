@@ -53,6 +53,7 @@ namespace _125_MusicLibraryFinal.Controllers
             return Ok(newPlaylist);
         }
 
+        // Helper Method to Take care of Post^
         private Playlist PostPlaylistObject(PlaylistDto playlistDto)
         {
             Playlist result = new Playlist();
@@ -67,7 +68,7 @@ namespace _125_MusicLibraryFinal.Controllers
                 temp.Title = f.Title;
                 temp.Artist = f.Artist;
                 temp.Album = f.Album;
-                temp.DateTime = f.DateTime;
+                temp.ReleaseDate = f.ReleaseDate;
                 temp.Genre = f.Genre;
                 temp.Likes = f.Likes;
 
