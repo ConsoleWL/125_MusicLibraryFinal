@@ -42,7 +42,7 @@ namespace _125_MusicLibraryFinal.Controllers
 
         // Adding a song wihtout adding it to the Playlist
         [HttpPost]
-        public IActionResult Post([FromBody] Song song)
+        public IActionResult AddingASongWithoutPlaylist([FromBody] Song song)
         {
             if (song is null)
                 return NotFound();
@@ -52,9 +52,28 @@ namespace _125_MusicLibraryFinal.Controllers
             return Ok(song);
         }
 
+        [HttpPut("{songid}/playlist/{playlistid}")]
+        public IActionResult AssignSongToPlaylist(int songid, int playlistid)
+        {
+            Song? song = _context.Songs.FirstOrDefault(f => f.Id == songid);
+
+            if (song is null)
+                return NotFound();
+
+            Playlist? playlist = _context.Playlists.FirstOrDefault(f => f.PlaylistId == playlistid);
+
+            if (playlist is null)
+                return NotFound();
+
+            song.PlaylistId = playlistid;
+
+            _context.SaveChanges();
+            return Ok(song);
+        }
+
         // Adding not existing song[From Body] to and Existing Playlist
         [HttpPost("{playlistId}")]
-        public IActionResult Post(int playlistId, [FromBody] Song song)
+        public IActionResult CreatingASongAndAssigningTOTheList(int playlistId, [FromBody] Song song)
         {
             if (song is null)
                 return NotFound();
@@ -147,5 +166,7 @@ namespace _125_MusicLibraryFinal.Controllers
             return Ok(song);
         }
 
+
+        
     }
 }
