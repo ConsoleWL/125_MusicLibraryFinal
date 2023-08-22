@@ -13,20 +13,11 @@ namespace _125_MusicLibraryFinal.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            // there is another way to write from Playlist to songs...
             modelBuilder.Entity<Song>()
                 .HasOne(f => f.Playlist)
                 .WithMany(f => f.Songs)
                 .HasForeignKey(f => f.PlaylistId);
-
-            modelBuilder.Entity<Song>()
-                .HasData(                                                                  // Don't know how to insert datetime in here, so I left DateTime.Now
-                new Song { Id = 1, Title = "Txt", Artist = "Arsm", Album = "Feedback", ReleaseDate = DateTime.Now, Genre = "Pop", Likes = 0 },
-                new Song { Id = 2, Title = "Migrations  ", Artist = "HasData", Album = "Todat", ReleaseDate = DateTime.Now, Genre = "Pop", Likes = 0 },
-                new Song { Id = 3, Title = "Blog", Artist = "HasData", Album = "One ", ReleaseDate = DateTime.Now, Genre = "Rock", Likes = 0 },
-                new Song { Id = 4, Title = "Thus  ", Artist = "See ", Album = "Custom ", ReleaseDate = DateTime.Now, Genre = "Rock", Likes = 0 },
-                new Song { Id = 5, Title = "Note", Artist = "See ", Album = "Temporary ", ReleaseDate = DateTime.Now, Genre = "Rap", Likes = 0 },
-                new Song { Id = 6, Title = "Additional ", Artist = "Limitations ", Album = "Therefore ", ReleaseDate = DateTime.Now, Genre = "Rap", Likes = 0 }
-                );
 
             modelBuilder.Entity<Playlist>()
                 .HasData(
@@ -35,7 +26,37 @@ namespace _125_MusicLibraryFinal.Data
                 new Playlist { PlaylistId = 3, Name = "Rap" }
                 );
 
-           
+            modelBuilder.Entity<Song>()
+                .HasData(                                                                  // Don't know how to insert datetime in here, so I left DateTime.Now
+                new Song { Id = 1, Title = "Txt", Artist = "Arsm", Album = "Feedback", ReleaseDate = DateTime.Now, Genre = "Pop", Likes = 0, PlaylistId = 2},
+                new Song { Id = 2, Title = "Migrations  ", Artist = "HasData", Album = "Todat", ReleaseDate = DateTime.Now, Genre = "Pop", Likes = 0, PlaylistId = 2 },
+                new Song { Id = 3, Title = "Blog", Artist = "HasData", Album = "One ", ReleaseDate = DateTime.Now, Genre = "Rock", Likes = 0, PlaylistId = 1 },
+                new Song { Id = 4, Title = "Thus  ", Artist = "See ", Album = "Custom ", ReleaseDate = DateTime.Now, Genre = "Rock", Likes = 0, PlaylistId = 1 },
+                new Song { Id = 5, Title = "Note", Artist = "See ", Album = "Temporary ", ReleaseDate = DateTime.Now, Genre = "Rap", Likes = 0, PlaylistId = 3 },
+                new Song { Id = 6, Title = "Additional ", Artist = "Limitations ", Album = "Therefore ", ReleaseDate = DateTime.Now, Genre = "Rap", Likes = 0, PlaylistId = 3 }
+                );
+
+            //modelBuilder.Entity<Song>()
+            //  .HasData(                                                                  
+            //  new Song 
+            //      { 
+            //          Id = 1, 
+            //          Title = "Txt", 
+            //          Artist = "Arsm", 
+            //          Album = "Feedback", 
+            //          ReleaseDate = DateTime.Now, 
+            //          Genre = "Pop", Likes = 0, 
+            //          PlaylistId = 2,
+            //          Playlist = new Playlist()
+            //          {
+            //              PlaylistId =1,
+            //              Name = "Pop",
+            //              Songs // and then  here I don't know what to do/// it's like from both ends I stuckin there....
+            //          }
+            //      }
+            //  );
+
+
         }
     }
 }
