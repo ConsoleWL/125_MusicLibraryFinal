@@ -1,0 +1,307 @@
+{
+	"info": {
+		"_postman_id": "42a872fb-f195-4482-a4db-f8de50cbcb99",
+		"name": "SongAPIFinal",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28100906"
+	},
+	"item": [
+		{
+			"name": "Playlist",
+			"item": [
+				{
+					"name": "Get Playlists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7171/api/Playlist/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Playlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"songs\": [\r\n    {\r\n      \"title\": \"string\",\r\n      \"artist\": \"string\",\r\n      \"album\": \"string\",\r\n      \"releaseDate\": \"2023-08-22T03:56:34.271Z\",\r\n      \"genre\": \"string\",\r\n      \"likes\": 0\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7171/api/Playlist/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Playlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Playlist without Song",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"string\",\r\n  \"songs\": [ ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7171/api/Playlist/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Playlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Playlist",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7171/api/Playlist/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Playlist",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Song",
+			"item": [
+				{
+					"name": "Get Songs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7171/api/Song/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Song",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Song",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//insert song Id is in the URL\r\n{\r\n        \"title\": \"Nikita\",\r\n        \"artist\": \"Nikita\",\r\n        \"album\": \"Nikita\",\r\n        \"releaseDate\": \"2023-08-21T20:00:26.495\",\r\n        \"genre\": \"Nikita\",\r\n        \"likes\": 10,            // id don't need to update Playlist then just delet untill likes\r\n        \"playlistId\": 2,\r\n        \"playlist\": {\r\n            \"playlistId\": 2,\r\n            \"name\": \"string\",\r\n            \"songs\": []\r\n        }\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7171/api/Song/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Song",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Song Partial",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "// Could not do it ....\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7171/api/Song/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Song",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Song Add To Playlist",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7171/api/Song/2/playlist/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Song",
+								"2",
+								"playlist",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Song",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7171/api/Song/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Song",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create a song without Playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"title\": \"Bfsdfsdfsdlog\",\r\n        \"artist\": \"HasData\",\r\n        \"album\": \"One \",\r\n        \"releaseDate\": \"2023-08-21T21:29:35\",\r\n        \"genre\": \"Rock\",\r\n        \"likes\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7171/api/Song/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Song",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Song and Add to Playlist",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n        \"title\": \"ThAAAAus  \",\r\n        \"artist\": \"SeAAAAe \",\r\n        \"album\": \"CusAAAAtom \",\r\n        \"releaseDate\": \"2023-08-21T21:29:35\",\r\n        \"genre\": \"Rock\",\r\n        \"likes\": 0\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7171/api/Song/",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7171",
+							"path": [
+								"api",
+								"Song",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
