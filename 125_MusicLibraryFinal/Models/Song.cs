@@ -1,4 +1,6 @@
-﻿namespace _125_MusicLibraryFinal.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace _125_MusicLibraryFinal.Models
 {
     public class Song
     {
@@ -11,6 +13,7 @@
         public int Likes { get; set; }
 
         // navigational props
+        [ForeignKey("Playlist")]
         public int? PlaylistId { get; set; }
         public Playlist? Playlist { get; set; }
 
