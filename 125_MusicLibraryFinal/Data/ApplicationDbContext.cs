@@ -13,7 +13,9 @@ namespace _125_MusicLibraryFinal.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // there is another way to write from Playlist to songs...
+            // So first tak it was ease to Seed Data Just for Song class but then when I tried to seed data in one to many ... it's very chellanging
+
+            // there is another way to write from Playlist to songs... can be both ways
             modelBuilder.Entity<Song>()
                 .HasOne(f => f.Playlist)
                 .WithMany(f => f.Songs)
@@ -35,6 +37,9 @@ namespace _125_MusicLibraryFinal.Data
                 new Song { Id = 5, Title = "Note", Artist = "See ", Album = "Temporary ", ReleaseDate = DateTime.Now, Genre = "Rap", Likes = 0, PlaylistId = 3 },
                 new Song { Id = 6, Title = "Additional ", Artist = "Limitations ", Album = "Therefore ", ReleaseDate = DateTime.Now, Genre = "Rap", Likes = 0, PlaylistId = 3 }
                 );
+
+            // I don't know how to assign songs to playlists =(
+
 
             //modelBuilder.Entity<Song>()
             //  .HasData(                                                                  
